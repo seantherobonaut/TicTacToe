@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Tic-Tac-Toe</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="layout.css">
         
+        <script type="text/javascript">'use strict';</script>
         <script type="text/javascript" src="utilities.js"></script>
         <script type="text/javascript" src="game.js"></script>
-        <script type="text/javascript" src="run.js"></script>
 
         <style type="text/css">
             #wrapper
@@ -21,18 +21,14 @@
 
             #board
             {
-                max-width: 1000px;
-                margin: auto;
-                border:1px solid #ddd;    
-                padding: 10px;   
-                border-radius: 5px;         
-            }    
+                border:1px dashed blue;   
+                padding:5px;                 
+            }
             
             #board > div > span
             {
-                text-align: center;
+                /* text-align: left; */
                 font-size: 24px;
-                border:1px solid #555;
                 width: 40px;
                 height: 40px;
                 vertical-align: middle;
@@ -40,16 +36,58 @@
                 font-weight: bold;
             }
 
-            
-            
+            /* Set borders for board */
+            #board > div > span
+            {
+                border:1px solid #555;
+                border-bottom-width: 0px;
+                border-right-width: 0px;
+            }            
+            #board > div > span:last-child
+            {
+                border-right-width:1px;
+            }
+            #board > div:last-child span
+            {
+                border-bottom-width:1px;
+            }                
         </style>
     </head>
     <body>
         <div id="wrapper">
-            <span id="board">
-                <div><span>O</span><span>X</span><span>X</span></div>
-                <div><span>X</span><span>O</span><span>X</span></div>
-                <div><span>X</span><span>X</span><span>O</span></div>
-            </span>
-        </div>		    
+            <p style="font-weight:bold;margin:5px;text-decoration:underline">Tic-Tac-Toe</p><br>
+            <span id="board"></span>
+        </div>	
+        <script type="text/javascript">
+            let game = new Board("board", 3, 3);
+
+            let tracker = 0;
+            function stamp()
+            {
+                tracker++;
+                if(tracker < 10)
+                    return "0"+tracker+": ";
+                else
+                    return tracker+": ";
+            }
+
+            let test = [];
+            for(let i=0; i<3; i++)
+            {
+                console.log(stamp()+'Pos: '+i);
+                test[i] = Array;
+                for(let ii=0; ii<3; ii++)
+                {
+                    let result = i*ii;
+                    console.log(stamp()+result);
+                    test[i][ii] = result;
+
+                }
+            }
+
+            // for(let i=0; i<3; i++)
+            //     for(let ii=0; ii<3; ii++)
+            //         console.log(test[i][ii]);
+
+        </script>	    
 </html>
