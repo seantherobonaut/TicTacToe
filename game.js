@@ -34,6 +34,7 @@ const Board = function(id="none", sizeX=0, sizeY=0)
     this.setMove = function(playerID, x, y)
     {
         //TODO actually do validation: playerID and x/y must be whole numbers above 0 and within board boundaries
+        //TODO maybe convert input to reverse "y" and subtract by offset? or willl that just confuse the AI? 
 
         if(x >= 0 && x < sizeX && y >= 0 && y < sizeY)
         {
