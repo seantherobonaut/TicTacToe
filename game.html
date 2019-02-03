@@ -54,6 +54,50 @@
         </style>
     </head>
     <body>
+
+        <!-- 
+            While game=true or -1 to end the game
+                Each loop a new player makes a move on board
+                Each loop, check if game is won
+                player.getMove() > board (until player makes a valid move, keep prompting player)
+                board->getState won = true/false
+
+
+                Board is empty
+                Player makes a move, player decides how move happens, if AI, it returns a value same as player
+                Check if they have won, if not, let the other player move
+
+                The bot is passed a reference to the board while the player is not
+
+                the game's loop control isn't something passed to any players, it is an X to click on that the loop checks each round before the next play
+
+                BoardObject
+                    makeMove(PlayerID(interface...getID()), x, y) true if spot is free, false if spot is taken
+                    getState() gets a copy of board NOT by reference
+                
+                PlayerObject
+                    //Will player type dictate how external javascript in terms of clicking next move act?
+                    _gamesWon;
+                    _type;
+                    _name;?getter/setter
+                    getID()
+                    
+                
+                game object
+                    _Players;
+                    _Round;
+                    Board;
+                    getNextPlayer()
+
+
+                    Constructor([players], boardX, boardY)
+                        create board
+                        ---AI no longer needs to be passed a permanent copy of the board, they ...think about how the players and board directly interact
+
+
+
+         -->
+
         <div id="wrapper">
             <p style="font-weight:bold;margin:5px;text-decoration:underline">Tic-Tac-Toe</p><br>
             <span id="board">
@@ -63,6 +107,13 @@
             </span>
         </div>	
         <script type="text/javascript">
+            let loopControl = true;
+
+            while(loopControl)
+            {
+
+            }
+
             let game = new Board("board", 4, 3);
 
             game.setMove(5, 1, 2);
