@@ -10,7 +10,7 @@
         
         <script type="text/javascript">'use strict';</script>
         <script type="text/javascript" src="utilities.js"></script>
-        <script type="text/javascript" src="game.js"></script>
+        <script type="text/javascript" src="Board.js"></script>
 
         <style type="text/css">
             #wrapper
@@ -58,10 +58,11 @@
         <!-- 
             While game=true or -1 to end the game
                 Each loop a new player makes a move on board
+                    player.getMove() > board (until player makes a valid move, keep prompting player)
+                render board()
                 Each loop, check if game is won
-                player.getMove() > board (until player makes a valid move, keep prompting player)
-                board->getState won = true/false
-
+                    board->getState won = true/false
+            
 
                 Board is empty
                 Player makes a move, player decides how move happens, if AI, it returns a value same as player
@@ -72,16 +73,23 @@
                 the game's loop control isn't something passed to any players, it is an X to click on that the loop checks each round before the next play
 
                 BoardObject
-                    makeMove(PlayerID(interface...getID()), x, y) true if spot is free, false if spot is taken
-                    getState() gets a copy of board NOT by reference
+                    setMove(PlayerID(interface...getID()), x, y) true if spot is free, false if spot is taken
+                    getState() gets a copy of board NOT by reference    
                 
-                PlayerObject
+                PlayerBase
                     //Will player type dictate how external javascript in terms of clicking next move act?
                     _gamesWon;
                     _type;
                     _name;?getter/setter
                     getID()
-                    
+                    getMove() -> board->setMove(getMove())
+
+                PlayerHuman extends PlayerBase
+
+                PlayerAI extends PlayerBase
+                    pass a reference of the board to the AI.
+
+                
                 
                 game object
                     _Players;
@@ -89,31 +97,26 @@
                     Board;
                     getNextPlayer()
 
-
                     Constructor([players], boardX, boardY)
                         create board
                         ---AI no longer needs to be passed a permanent copy of the board, they ...think about how the players and board directly interact
+                        when it is a player's turn treat it like waiting for text input.
 
 
+                use slice to return a copy of array, splice changes original array
+
+                Todo: get the board to render and accept inputs first.
+                Simulate player inputs, create players last to plugin to those inputs
+
+                Todo: rewrite array entries to not be mixed for humans, arrays do y first then x, let's keep it that way
 
          -->
 
         <div id="wrapper">
             <p style="font-weight:bold;margin:5px;text-decoration:underline">Tic-Tac-Toe</p><br>
-            <span id="board">
-                <div><span>O</span><span>X</span><span>X</span></div>
-                <div><span>X</span><span>O</span><span>X</span></div>
-                <div><span>X</span><span>X</span><span>O</span></div>
-            </span>
+            <span id="board"></span>
         </div>	
         <script type="text/javascript">
-            let loopControl = true;
-
-            while(loopControl)
-            {
-
-            }
-
             let game = new Board("board", 4, 3);
 
             game.setMove(5, 1, 2);
