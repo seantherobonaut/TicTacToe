@@ -1,7 +1,7 @@
 class Board
 {
     //Constructor
-    constructor(targetID="none", sizeX=0, sizeY=0)
+    constructor(targetID="none", sizeY=0, sizeX=0)
     {
         this._sizeX = sizeX;
         this._sizeY = sizeY;
@@ -27,19 +27,21 @@ class Board
     {        
         let result = "";
         //<div><span>O</span><span>X</span><span>X</span></div>
-        for(let i=0; i<sizeY; i++)
+        for(let i=0; i<this._sizeY; i++)
         {
-            result.concat("<div>");
-            for(let ii=0; ii<sizeX; ii++)
+            result += "<div>";
+            for(let ii=0; ii<this._sizeX; ii++)
             {
-                result.concat("<span>");
-                result.concat(this._board[ii][i]);
-                result.concat("</span>");
+                result += "<span>";
+                result += this._board[i][ii];
+                result += "</span>";
             }
-            result.concat("</div>");
-        }
+            result += "</div>";
 
-        return result;
+            return result;
+        }        
+
+        //return result;
         
     }
 
@@ -50,13 +52,9 @@ class Board
     }
 
     //Checking for valid entries will be done by an external function. Return 0 if spot is taken, return -1 if out of bounds, true otherwise
-    setMove(playerID, x, y)
+    setMove(playerID, y, x)
     {
-        //TODO actually do validation: playerID and x/y must be whole numbers above 0 and within board boundaries
-        //TODO maybe convert input to reverse "y" and subtract by offset? or willl that just confuse the AI? 
-        //TODO remember to add "1" to input values
-        x--;
-        y--;
+        //TODO actually do validation: playerID and x/y must be whole numbers above 0 and within board boundaries            
 
         if(x >= 0 && x < this._sizeX && y >= 0 && y < this._sizeX)
         {
