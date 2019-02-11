@@ -11,6 +11,7 @@
         <script type="text/javascript">'use strict';</script>
         <script type="text/javascript" src="utilities.js"></script>
         <script type="text/javascript" src="Board.js"></script>
+        <script type="text/javascript" src="PlayerBase.js"></script>
 
         <style type="text/css">
             #wrapper
@@ -108,8 +109,6 @@
                 Todo: get the board to render and accept inputs first.
                 Simulate player inputs, create players last to plugin to those inputs
 
-                Todo: rewrite array entries to not be mixed for humans, arrays do y first then x, let's keep it that way
-
          -->
 
         <div id="wrapper">
@@ -117,11 +116,18 @@
             <span id="board"></span>
         </div>	
         <script type="text/javascript">
-            let game = new Board("board", 4, 3);
+            let board = new Board("board", 3, 3);
 
-            game.setMove(5, 2, 2);
+            if(board.setMove(5, 2, 1) > 0)
+                console.log("Move successful!");
+            else
+                console.log("Move invalid.")
             
-            console.log(game.getState());
-            console.log(game.render());
+            console.log(board.getState());
+            board.render();
+
+            test = new PlayerBase(board);
+            console.log(test.id);
+            test.id = 3;
         </script>	    
 </html>

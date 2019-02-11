@@ -37,12 +37,9 @@ class Board
                 result += "</span>";
             }
             result += "</div>";
-
-            return result;
         }        
-
-        //return result;
         
+        this._target.innerHTML = result;   
     }
 
     //Return array by value rather than reference
@@ -51,15 +48,18 @@ class Board
         return this._board.slice(0);
     }
 
-    //Checking for valid entries will be done by an external function. Return 0 if spot is taken, return -1 if out of bounds, true otherwise
+    //Checking for valid entries will be done by an external function. Return 0 if spot is taken, return -1 if out of bounds, -2 if data passed is invalid, true otherwise
     setMove(playerID, y, x)
     {
         //TODO actually do validation: playerID and x/y must be whole numbers above 0 and within board boundaries            
 
         if(x >= 0 && x < this._sizeX && y >= 0 && y < this._sizeX)
         {
-            if(this._board[y][x] == 0)            
+            if(this._board[y][x] == 0)    
+            {
                 this._board[y][x] = playerID;            
+                return true;
+            }        
             else
                 return 0; //This spot is taken
         }
