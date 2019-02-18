@@ -18,6 +18,8 @@ class PlayerBase
         PlayerBase.players++;
         this._id = PlayerBase.players;
         this.name = "Player"+this._id;
+
+        this._board = board;
     }
 
     get id()
@@ -32,7 +34,7 @@ class PlayerBase
     //Todo
     getMove()
     {
-
+        //Player will create a clickable interface overlaying the board and the option chosen will be returned here. 
     }
 }
 PlayerBase.players = 0;

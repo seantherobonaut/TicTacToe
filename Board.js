@@ -23,6 +23,24 @@ class Board
         }        
     }
 
+    //Getters and setters for board dimensions
+    get sizeX()
+    {
+        return this._sizeX;
+    }
+    set sizeX(value)
+    {
+        console.log("Board.sizeX is read-only! Passed value of \""+value+"\" will be ignored.");
+    }    
+    get sizeY()
+    {
+        return this._sizeY;
+    }
+    set sizeY(value)
+    {
+        console.log("Board.sizeY is read-only! Passed value of \""+value+"\" will be ignored.");
+    }    
+
     render()
     {        
         let result = "";

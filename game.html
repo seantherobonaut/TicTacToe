@@ -58,11 +58,11 @@
 
         <!-- 
             While game=true or -1 to end the game
-                Each loop a new player makes a move on board
-                    player.getMove() > board (until player makes a valid move, keep prompting player)
+                while playerMove != false                
+                    playerMove = board.setMove(players[i++], players[i++].getMove())  (until player makes a valid move, keep prompting player)
                 render board()
-                Each loop, check if game is won
-                    board->getState won = true/false
+                
+                game = board->getState 
             
 
                 Board is empty
