@@ -1,23 +1,25 @@
 class Board
 {
-    //Constructor
     constructor(targetID="none", sizeY=0, sizeX=0)
     {
+        //Dimensinos
         this._sizeX = sizeX;
         this._sizeY = sizeY;
+
+        //Private array for the board coordinates
         this._board = new Array;
 
         //console.log("Board was created!");
         this._target = document.getElementById(targetID);
         if(this._target)
-            console.log("I have been created!");
+            console.log("The game board has been created successfully!");
         else
-            console.log("Unable to find element with that id."); //throw new error
+            console.log("Unable to find element with that id."); //TODO throw new error
 
         //Fill the board using sizeX and sizeY
         for(let i=0; i<this._sizeY; i++)
         {
-            this._board.push(new Array);
+            this._board.push(new Array); 
             for(let ii=0; ii<this._sizeX; ii++)
                 this._board[i].push(0);
         }        
@@ -66,8 +68,8 @@ class Board
         return this._board.slice(0);
     }
 
-    //Checking for valid entries will be done by an external function. Return 0 if spot is taken, return -1 if out of bounds, -2 if data passed is invalid, true otherwise
-    setMove(playerID, y, x)
+    //
+    setMove(playerObj, playerMove)
     {
         //TODO actually do validation: playerID and x/y must be whole numbers above 0 and within board boundaries            
 

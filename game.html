@@ -57,21 +57,17 @@
     <body>
 
         <!-- 
-            While game=true or -1 to end the game
-                while playerMove != false                
-                    playerMove = board.setMove(players[i++], players[i++].getMove())  (until player makes a valid move, keep prompting player)
+            While game=true or end the game
+
+                Load next player
+                playerMove = board.setMove(playerObject, playerObject.getMoveID()) get player move (if we have an endless loop inside the player class waitin for input, will javascript goto the next line or wait?)
+                (do while)
+                If move is not valid, keep asking player to make a new one
+
                 render board()
-                
+
                 game = board->getState 
             
-
-                Board is empty
-                Player makes a move, player decides how move happens, if AI, it returns a value same as player
-                Check if they have won, if not, let the other player move
-
-                The bot is passed a reference to the board while the player is not
-
-                the game's loop control isn't something passed to any players, it is an X to click on that the loop checks each round before the next play
 
                 BoardObject
                     setMove(PlayerID(interface...getID()), x, y) true if spot is free, false if spot is taken
@@ -90,8 +86,6 @@
                 PlayerAI extends PlayerBase
                     pass a reference of the board to the AI.
 
-                
-                
                 game object
                     _Players;
                     _Round;
@@ -127,7 +121,6 @@
             board.render();
 
             test = new PlayerBase(board);
-            console.log(test.id);
-            test.id = 3;
+           
         </script>	    
 </html>
