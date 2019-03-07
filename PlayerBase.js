@@ -34,7 +34,9 @@ class PlayerBase
     //Todo
     getMove()
     {
-        //Player will create a clickable interface overlaying the board and the option chosen will be returned here. 
+        //validation goes here if(playerMove >= 1 && playerMove <= (this._sizeX*this._sizeY)) and make sure they are numbers!
+
+        return 4;
     }
 }
 PlayerBase.players = 0;

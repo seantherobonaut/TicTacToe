@@ -2,7 +2,7 @@ class Board
 {
     constructor(targetID="none", sizeY=0, sizeX=0)
     {
-        //Dimensinos
+        //Dimensions
         this._sizeX = sizeX;
         this._sizeY = sizeY;
 
@@ -22,7 +22,12 @@ class Board
             this._board.push(new Array); 
             for(let ii=0; ii<this._sizeX; ii++)
                 this._board[i].push(0);
-        }        
+        }    
+
+        this._target.addEventListener("click", function()
+        {
+            console.log("Hello!!!");
+        });    
     }
 
     //Getters and setters for board dimensions
@@ -43,6 +48,7 @@ class Board
         console.log("Board.sizeY is read-only! Passed value of \""+value+"\" will be ignored.");
     }    
 
+    //Render the board on the screen
     render()
     {        
         let result = "";
@@ -68,22 +74,28 @@ class Board
         return this._board.slice(0);
     }
 
-    //
-    setMove(playerObj, playerMove)
+    //Return true if the move is successful or false if the spot is already taken
+    makeMove(playerObj)
     {
-        //TODO actually do validation: playerID and x/y must be whole numbers above 0 and within board boundaries            
-
-        if(x >= 0 && x < this._sizeX && y >= 0 && y < this._sizeX)
+        if(playerObj instanceof PlayerBase)
         {
-            if(this._board[y][x] == 0)    
+            //PlayerBase is responsible for input validation
+            let playerMove = playerObj.getMove();
+            
+            let row = Math.ceil(playerMove / this._sizeX);
+            let column = this._sizeX - (row*this._sizeX - playerMove);
+            row--;
+            column--;
+
+            if(this._board[row][column] == 0)
             {
-                this._board[y][x] = playerID;            
+                this._board[row][column] = playerObj.id;
                 return true;
-            }        
+            }
             else
-                return 0; //This spot is taken
+                return false;
         }
         else
-            return -1; //Out of bounds
+            throw new Error("Board.makeMove\'s 1st argument (playerObj) must be an instance of PlayerBase!");
     }
 }

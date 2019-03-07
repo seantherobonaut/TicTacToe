@@ -57,17 +57,6 @@
     <body>
 
         <!-- 
-            While game=true or end the game
-
-                Load next player
-                playerMove = board.setMove(playerObject, playerObject.getMoveID()) get player move (if we have an endless loop inside the player class waitin for input, will javascript goto the next line or wait?)
-                (do while)
-                If move is not valid, keep asking player to make a new one
-
-                render board()
-
-                game = board->getState 
-            
 
                 BoardObject
                     setMove(PlayerID(interface...getID()), x, y) true if spot is free, false if spot is taken
@@ -110,17 +99,44 @@
             <span id="board"></span>
         </div>	
         <script type="text/javascript">
+
+            /*
+                create board
+                setup board
+                setup players
+
+                While game=true or end the game
+
+                Load next player
+                    
+                clicking the "x" button will pass the move -1
+
+                player interface converts clicking actions into nunbers to be ran through the board
+                board returns true or false to the interface to let the player know what is happening
+
+                board.makeMove(playerObj)
+
+                
+                game = board->getState 
+            */
+
             let board = new Board("board", 3, 3);
-
-            if(board.setMove(5, 2, 1) > 0)
-                console.log("Move successful!");
-            else
-                console.log("Move invalid.")
             
-            console.log(board.getState());
-            board.render();
 
-            test = new PlayerBase(board);
+
+
+
+
+            //let steve  = new PlayerBase(board);
+
+            // if(board.makeMove(steve))
+            //     console.log("Move successful!");
+            // else
+            //     console.log("This spot is already taken!");
+            
+            // console.log(board.getState());
+            // board.render();
+
            
         </script>	    
 </html>
