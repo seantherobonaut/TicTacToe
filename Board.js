@@ -19,15 +19,15 @@ class Board
         //Fill the board using sizeX and sizeY
         for(let i=0; i<this._sizeY; i++)
         {
-            this._board.push(new Array); 
+            this._board.push(new Array);
             for(let ii=0; ii<this._sizeX; ii++)
                 this._board[i].push(0);
-        }    
+        }
 
         this._target.addEventListener("click", function()
         {
-            console.log("Hello!!!");
-        });    
+            console.log("Hello world!");
+        });
     }
 
     //Getters and setters for board dimensions
@@ -38,7 +38,7 @@ class Board
     set sizeX(value)
     {
         console.log("Board.sizeX is read-only! Passed value of \""+value+"\" will be ignored.");
-    }    
+    }
     get sizeY()
     {
         return this._sizeY;
@@ -46,11 +46,11 @@ class Board
     set sizeY(value)
     {
         console.log("Board.sizeY is read-only! Passed value of \""+value+"\" will be ignored.");
-    }    
+    }
 
     //Render the board on the screen
     render()
-    {        
+    {
         let result = "";
         //<div><span>O</span><span>X</span><span>X</span></div>
         for(let i=0; i<this._sizeY; i++)
@@ -63,9 +63,9 @@ class Board
                 result += "</span>";
             }
             result += "</div>";
-        }        
-        
-        this._target.innerHTML = result;   
+        }
+
+        this._target.innerHTML = result;
     }
 
     //Return array by value rather than reference
@@ -81,7 +81,7 @@ class Board
         {
             //PlayerBase is responsible for input validation
             let playerMove = playerObj.getMove();
-            
+
             let row = Math.ceil(playerMove / this._sizeX);
             let column = this._sizeX - (row*this._sizeX - playerMove);
             row--;

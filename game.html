@@ -7,7 +7,7 @@
 
         <title>Tic-Tac-Toe</title>
         <link rel="stylesheet" type="text/css" href="layout.css">
-        
+
         <script type="text/javascript">'use strict';</script>
         <script type="text/javascript" src="utilities.js"></script>
         <script type="text/javascript" src="Board.js"></script>
@@ -22,10 +22,10 @@
 
             #board
             {
-                border:1px dashed blue;   
-                padding:5px;                 
+                border:1px dashed blue;
+                padding:5px;
             }
-            
+
             #board > div > span
             {
                 /* text-align: left; */
@@ -43,7 +43,7 @@
                 border:1px solid #555;
                 border-bottom-width: 0px;
                 border-right-width: 0px;
-            }            
+            }
             #board > div > span:last-child
             {
                 border-right-width:1px;
@@ -51,17 +51,17 @@
             #board > div:last-child span
             {
                 border-bottom-width:1px;
-            }                
+            }
         </style>
     </head>
     <body>
 
-        <!-- 
+        <!--
 
                 BoardObject
                     setMove(PlayerID(interface...getID()), x, y) true if spot is free, false if spot is taken
-                    getState() gets a copy of board NOT by reference    
-                
+                    getState() gets a copy of board NOT by reference
+
                 PlayerBase
                     //Will player type dictate how external javascript in terms of clicking next move act?
                     _gamesWon;
@@ -97,7 +97,7 @@
         <div id="wrapper">
             <p style="font-weight:bold;margin:5px;text-decoration:underline">Tic-Tac-Toe</p><br>
             <span id="board"></span>
-        </div>	
+        </div>
         <script type="text/javascript">
 
             /*
@@ -108,7 +108,7 @@
                 While game=true or end the game
 
                 Load next player
-                    
+
                 clicking the "x" button will pass the move -1
 
                 player interface converts clicking actions into nunbers to be ran through the board
@@ -116,13 +116,13 @@
 
                 board.makeMove(playerObj)
 
-                
-                game = board->getState 
+
+                game = board->getState
             */
 
             let board = new Board("board", 3, 3);
-            
-            
+            board.render();
+
 
 
 
@@ -133,10 +133,10 @@
             //     console.log("Move successful!");
             // else
             //     console.log("This spot is already taken!");
-            
+
             // console.log(board.getState());
             // board.render();
 
-           
-        </script>	    
+
+        </script>
 </html>
