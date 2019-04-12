@@ -10,7 +10,7 @@
 
         <script type="text/javascript">'use strict';</script>
         <script type="text/javascript" src="utilities.js"></script>
-        <script type="text/javascript" src="Board.js"></script>
+        <script type="text/javascript" src="BoardUI.js"></script>
         <script type="text/javascript" src="Game.js"></script>
         <script type="text/javascript" src="PlayerBase.js"></script>
         <script type="text/javascript" src="PlayerHuman.js"></script>
@@ -128,10 +128,10 @@
                 game = board->getState
             */
 
-            let board = new Board("board", 3, 3);
+            let board = new BoardUI("board", 3, 3);
             let sean = new PlayerHuman("Sean!!!");
 
-            board.makeMove(sean, 4);
+            board.writeMove(1,1,'X');
 
             /*
             let game = true;

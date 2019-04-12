@@ -1,4 +1,4 @@
-class Board
+class BoardUI
 {
     constructor(targetID="none", sizeY=0, sizeX=0)
     {
@@ -9,8 +9,8 @@ class Board
         //Private array to hold the board and its elements
         this._board = new Array;
 
-        //Private member that holds most recent move
-        this._lastMove = 0;
+        //Private member that holds most recent move as an array
+        this._lastMove = null;
 
         //Check to see if the board can be created
         this._target = document.getElementById(targetID);
@@ -45,8 +45,8 @@ class Board
             {
                 this._board[i][ii].addEventListener("click", function()
                 {
-                    console.log("Element: ["+(i+1)+"]["+(ii+1)+"] was clicked!");
-                    instance.setLastMove((i+1), (ii+1)); //Add 1 to avoid result of 0
+                    console.log("Element: ["+i+"]["+ii+"] was clicked!");
+                    instance.pushMove(i, ii);
                 });
             }
         }
@@ -80,51 +80,26 @@ class Board
         console.log("Board.sizeY is read-only! Passed value of \""+value+"\" will be ignored.");
     }
 
-    //Return an array as current state of the board
-    getState()
+    //Set this._lastMove to the last move that was clicked
+    pushMove(y, x)
     {
-        //TODO create an array to return from the embedded object
+        this._lastMove = {"y":y, "x":x};
     }
 
-    //Set this._lastMove to the number that was clicked (convert [y][x] to a number)
-    setLastMove(y, x)
-    {
-        //TODO make a check to ensure the values fit (it only checks data, does not + or - to make it fit)
-        this._lastMove = ((y*this._sizeX) - (this._sizeX-x));
-        console.log("Last move: "+this._lastMove);
-    }
-
-    //Get last move, then set the last move to 0
-    getLastMove()
+    //Get the last move, then set the last move to null
+    pullMove()
     {
         //Store current move
         let move = this._lastMove;
 
-        //Reset move back to 0;
-        this._lastMove = 0;
+        //Reset move back to null;
+        this._lastMove = null;
 
         return move;
     }
 
-    //Return true if the move is successful or false if the spot is already taken
-    makeMove(playerObj, move)
+    writeMove(y,x, contents)
     {
-        if(playerObj instanceof PlayerBase)
-        {
-            //convert move into x and y
-            let row = Math.ceil(move / this._sizeX);
-            let column = this._sizeX - (row*this._sizeX - move);
-            row--;
-            column--;
-            if(this._board[row][column].innerText == 0)
-            {
-                this._board[row][column].innerText = playerObj.id;
-                return true;
-            }
-            else
-                return false;
-        }
-        else
-            throw new Error("Board.makeMove\'s 1st argument (playerObj) must be an instance of PlayerBase!");
+        this._board[y][x].innerText = contents;
     }
 }
