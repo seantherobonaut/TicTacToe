@@ -1,42 +1,34 @@
-// PlayerBase
-// //Will player type dictate how external javascript in terms of clicking next move act?
 // _gamesWon;
 // _type;
 // _name;?getter/setter
 // getID() getter/setter
-// getMove() -> board->setMove(getMove())
-//static id
-
 
 class PlayerBase
 {
-    constructor(board)
-    {        
-        if(!(board instanceof Board))        
-            throw new Error("PlayerBase's constructor argument \"board\", bust be an instance the Board class!");
-
+    constructor(type)
+    {
         PlayerBase.players++;
         this._id = PlayerBase.players;
+        this._type = type
         this.name = "Player"+this._id;
-
-        this._board = board;
     }
 
     get id()
     {
         return this._id;
     }
-    set id(id)
+    set id(value)
     {
-        console.log("PlayerBase.id is read-only! Passed value of \""+id+"\" will be ignored.");
+        console.log("PlayerBase.id is read-only! Passed value of \""+value+"\" will be ignored.");
     }
 
-    //Todo
-    getMove()
+    get type()
     {
-        //validation goes here if(playerMove >= 1 && playerMove <= (this._sizeX*this._sizeY)) and make sure they are numbers!
-
-        return 4;
+        return this._type;
+    }
+    set type(value)
+    {
+        console.log("PlayerBase.type is read-only! Passed value of \""+value+"\" will be ignored.");
     }
 }
 PlayerBase.players = 0;

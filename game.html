@@ -11,7 +11,9 @@
         <script type="text/javascript">'use strict';</script>
         <script type="text/javascript" src="utilities.js"></script>
         <script type="text/javascript" src="Board.js"></script>
+        <script type="text/javascript" src="Game.js"></script>
         <script type="text/javascript" src="PlayerBase.js"></script>
+        <script type="text/javascript" src="PlayerHuman.js"></script>
 
         <style type="text/css">
             #wrapper
@@ -35,6 +37,7 @@
                 vertical-align: middle;
                 line-height: 40px;
                 font-weight: bold;
+                cursor:cell;
             }
 
             /* Set borders for board */
@@ -109,6 +112,11 @@
 
                 Load next player
 
+        //have two loops
+        one to wait for a correct move(this will loop until a correct move is entered)
+            one to wait for input (this will loop until the user does something)
+
+
                 clicking the "x" button will pass the move -1
 
                 player interface converts clicking actions into nunbers to be ran through the board
@@ -121,21 +129,40 @@
             */
 
             let board = new Board("board", 3, 3);
-            board.render();
+            let sean = new PlayerHuman("Sean!!!");
 
+            board.makeMove(sean, 4);
 
+            /*
+            let game = true;
+            while(game)
+            {
+                let validMove = false;
+                while(!validMove)
+                {
+                    let move = 0;
+                    while(move == 0) //loop until the player does something
+                    {
+                        if(game.getStatus()) //if exit game has not been called, then allow the player to move
+                            move = game.board.getMove();
+                        else
+                            move = -1; //exit move to end the loop
+                    }
 
+                    if(game.getStatus()) //If game is still going try to make a move, otherwise allow user to quit and end loop
+                        validMove = board.makeMove(player, move);
+                    else
+                        validMove = true;
+                }
 
+                //check the board to see if there are any wins game.checkBoard() will board's getState member
 
-            //let steve  = new PlayerBase(board);
+                //if the game status == 0, print out current score, and ask player if they want to play again
 
-            // if(board.makeMove(steve))
-            //     console.log("Move successful!");
-            // else
-            //     console.log("This spot is already taken!");
+            }
 
-            // console.log(board.getState());
-            // board.render();
+            */
+
 
 
         </script>
